@@ -34,6 +34,8 @@ public class WebSecurityConfig {
 								.requestMatchers("/", "/home", "/webjars/**", "/styles/**", "/images/**").permitAll()
 								// Permit liveness and readiness probes paths
 								.requestMatchers("/livez", "/readyz").permitAll()
+								// Permit actuator endpoints so App Live View can read them (served on the management port).
+								.requestMatchers("/actuator/**").permitAll()
 								// Require authentication for all others paths.
 								.anyRequest().authenticated()
 				)
